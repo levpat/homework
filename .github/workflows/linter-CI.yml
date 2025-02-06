@@ -1,0 +1,22 @@
+name: linter-CI
+
+on:
+  push:
+    paths:
+      '**.py'
+  pull_request:
+    paths:
+      '**.py'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ruff install
+        run: pip3 install ruff
+
+      - name: Run ruff lintering
+        run: ruff check --fix
